@@ -45,7 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\ITaskRepository.cs" />
+    <Compile Include="Abstract\ITaskStatusRepository.cs" />
+    <Compile Include="Abstract\IUserRepository.cs" />
     <Compile Include="Concrete\RelAContext.cs" />
+    <Compile Include="Concrete\UserRepository.cs" />
     <Compile Include="Entities\Change.cs" />
     <Compile Include="Entities\Task.cs" />
     <Compile Include="Entities\TaskStatus.cs" />
@@ -65,9 +69,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Abstract\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
