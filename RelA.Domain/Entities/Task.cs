@@ -32,5 +32,7 @@ namespace RelA.Domain.Entities
 
         [StringLength(500, ErrorMessage = "{0} não pode exceder {1} caracteres")]
         public string Note { get; set; }
+
+        public virtual int ProjectID { get; set; }
     }
 }

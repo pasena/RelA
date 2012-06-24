@@ -38,6 +38,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,6 +52,7 @@
     <Compile Include="Concrete\RelAContext.cs" />
     <Compile Include="Concrete\UserRepository.cs" />
     <Compile Include="Entities\Change.cs" />
+    <Compile Include="Entities\Project.cs" />
     <Compile Include="Entities\Task.cs" />
     <Compile Include="Entities\TaskStatus.cs" />
     <Compile Include="Entities\User.cs" />
@@ -66,10 +68,16 @@
     <Compile Include="Migrations\201206180304350_MaxLenghthFields.Designer.cs">
       <DependentUpon>201206180304350_MaxLenghthFields.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201206242255036_Project Table.cs" />
+    <Compile Include="Migrations\201206242255036_Project Table.Designer.cs">
+      <DependentUpon>201206242255036_Project Table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

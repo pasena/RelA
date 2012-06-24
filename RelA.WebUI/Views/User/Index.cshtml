@@ -1,0 +1,59 @@
+﻿@using RelA.Domain.Entities;
+@model RelA.WebUI.Models.UserViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>
+    Pesquisar Usuários</h2>
+<hr />
+@using (Html.BeginForm())
+{
+    <span class="label">Login:</span>
+    <br />
+    @Html.TextBoxFor(m => m.Filter.Login)
+    <br />
+    <input type="submit" value="Pesquisar" class="actionButtons" />
+}
+<h3>
+    Resultado</h3>
+<div class="toolBar">@Html.ActionLink("Create a new User", "Create")</div>
+<hr />
+@if (Model.Entity != null && Model.Entity.Count() > 0)
+{
+    <table class="Grid">
+        <thead>
+            <tr>
+                <th>
+                    Login
+                </th>
+                <th>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (User item in Model.Entity)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(item.Login, "Edit", new { productID = item.UserID })
+                    </td>
+                    <td class="buttons">
+                        @using (Html.BeginForm("Delete", "User"))
+                        {
+                            @Html.Hidden("UserID", item.UserID)
+                            <input type="submit" value="Delete" class="actionButtons" onclick="return confirm('You really want to delete this user?');" />
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>    
+    <div class="pager">
+        @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x }))
+    </div>
+}
+else
+{
+    @:Nenhum registro encontrado!
+}

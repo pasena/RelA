@@ -8,7 +8,7 @@ namespace RelA.Domain.Abstract
 {
     interface ITaskStatusRepository
     {
-        IQueryable<TaskStatus> Status;
+        IQueryable<TaskStatus> Status { get; }
 
         void SaveStatus(TaskStatus status);
     }
