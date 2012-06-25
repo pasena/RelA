@@ -1,5 +1,6 @@
-﻿@using RelA.Domain.Entities;
-@model RelA.WebUI.Models.UserViewModel
+﻿@model RelA.WebUI.Models.ProjectViewModel
+@using RelA.Domain.Entities;
+
 @{
     ViewBag.Title = "Consultar Usuário";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,15 +10,15 @@
 <hr />
 @using (Html.BeginForm())
 {
-    <span class="label">Login:</span>
+    <span class="label">Projeto:</span>
     <br />
-    @Html.TextBoxFor(m => m.Filter.Login)
+    @Html.TextBoxFor(m => m.Filter.Name)
     <br />
     <input type="submit" value="Pesquisar" class="actionButtons" />
 }
 <h3>
     Resultado</h3>
-<div class="toolBar">@Html.ActionLink("Create a new User", "Create")</div>
+<div class="toolBar">@Html.ActionLink("Create a new Project", "Create")</div>
 <hr />
 @if (Model.Entity != null && Model.Entity.Count() > 0)
 {
@@ -25,23 +26,23 @@
         <thead>
             <tr>
                 <th>
-                    Login
+                    Projeto
                 </th>
                 <th>
                 </th>
             </tr>
         </thead>
         <tbody>
-            @foreach (User item in Model.Entity)
+            @foreach (Project item in Model.Entity)
             {
                 <tr>
                     <td>
-                        @Html.ActionLink(item.Login, "Edit", new { productID = item.UserID })
+                        @Html.ActionLink(item.Name, "Edit", new { projectID = item.ProjectID })
                     </td>
                     <td class="buttons">
-                        @using (Html.BeginForm("Delete", "User"))
+                        @using (Html.BeginForm("Delete", "Project"))
                         {
-                            @Html.Hidden("UserID", item.UserID)
+                            @Html.Hidden("projectID", item.ProjectID)
                             <input type="submit" value="Delete" class="actionButtons" onclick="return confirm('You really want to delete this user?');" />
                         }
                     </td>

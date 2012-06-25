@@ -27,6 +27,7 @@ namespace RelA.WebUI.Infrastructure
         private void AddBinding()
         {
             this.kernel.Bind<IUserRepository>().To<UserRepository>();
+            this.kernel.Bind<IProjectRepository>().To<ProjectRepository>();
         }
     }
 }

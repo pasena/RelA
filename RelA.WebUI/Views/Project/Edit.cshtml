@@ -1,15 +1,16 @@
-﻿@model RelA.Domain.Entities.User
+﻿@model RelA.Domain.Entities.Project
+
 @{
-    ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <h2>
-    Criar Novo Usuário</h2>
+    ViewBag.Title</h2>
 <div class="toolBar">
     @Html.ActionLink("Cancelar", "Index")
 </div>
 <hr />
-@using (@Html.BeginForm("Edit", "User"))
+@using (@Html.BeginForm("Edit", "Project"))
 {
     @Html.EditorForModel(Model)
     

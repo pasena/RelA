@@ -6,12 +6,7 @@ using RelA.Domain.Entities;
 
 namespace RelA.Domain.Abstract
 {
-    public interface IUserRepository
+    public interface IProjectRepository : IRepositoryBase<Project>
     {
-        IQueryable<User> Users { get; }
-
-        void SaveUser(User user);
-
-        void DeleteUser(int userID);
     }
 }
