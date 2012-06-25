@@ -7,7 +7,7 @@ namespace RelA.Domain.Abstract
 {
     public interface IRepositoryBase<T>
     {
-        IQueryable<T> GetAll();
+        IQueryable<T> GetAll { get; }
 
         void Save(T entity);
 

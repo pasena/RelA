@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Administração";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>
+    Admin</h2>
+<hr />
+<ul>
+    <li>@Html.ActionLink("Usuários", "Index", "User")</li>
+    <li>@Html.ActionLink("Projetos", "Index", "Project")</li>
+    <li>@Html.ActionLink("Tipos de Status de Atividades", "Index", "TaskStatus")</li>
+</ul>

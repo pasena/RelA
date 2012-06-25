@@ -3,39 +3,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using RelA.WebUI.Models;
 using RelA.Domain.Abstract;
 using RelA.Domain.Entities;
+using RelA.Domain.Concrete;
+using RelA.WebUI.Models;
 
 namespace RelA.WebUI.Controllers
 {
-    public class ProjectController : Controller
+    public class TaskStatusController : Controller
     {
-        IProjectRepository repository = null;
+        ITaskStatusRepository repository = null;
 
-        public ProjectController(IProjectRepository repo)
+        public TaskStatusController(ITaskStatusRepository repo)
         {
             this.repository = repo;
         }
 
         public ActionResult Index()
         {
-            ProjectViewModel model = new ProjectViewModel();
+            TaskStatusViewModel model = new TaskStatusViewModel();
             model.Entity = repository.GetAll;
 
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult Index(ProjectViewModel model)
+        public ActionResult Index(TaskStatusViewModel model)
         {
-            IQueryable<Project> query = repository.GetAll;
+            IQueryable<TaskStatus> query = repository.GetAll;
 
             if (model.Filter != null)
             {
-                if (!string.IsNullOrWhiteSpace(model.Filter.Name))
+                if (!string.IsNullOrWhiteSpace(model.Filter.Description))
                 {
-                    query = query.Where(w => w.Name.Contains(model.Filter.Name));
+                    query = query.Where(w => w.Description.Contains(model.Filter.Description));
                 }
             }
 
@@ -46,20 +47,20 @@ namespace RelA.WebUI.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.Title = "Criar Novo Projeto";
+            ViewBag.Title = "Criar Novo Status";
 
-            return View("Edit", new Project());
+            return View("Edit", new TaskStatus());
         }
             
-        public ActionResult Edit(int projectID)
+        public ActionResult Edit(int TaskStatusID)
         {
-            ViewBag.Title = "Editar Projeto";
+            ViewBag.Title = "Editar Status";
 
-            Project editProject = repository.GetAll.FirstOrDefault(w => w.ProjectID == projectID);
+            TaskStatus editTaskStatus = repository.GetAll.FirstOrDefault(w => w.TaskStatusID == TaskStatusID);
 
-            if (editProject != null)
+            if (editTaskStatus != null)
             {
-                return View(editProject);
+                return View(editTaskStatus);
             }
             else
             {
@@ -68,18 +69,18 @@ namespace RelA.WebUI.Controllers
         }
         
         [HttpPost]
-        public ActionResult Edit(Project project)
+        public ActionResult Edit(TaskStatus TaskStatus)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    repository.Save(project);
+                    repository.Save(TaskStatus);
                     return RedirectToAction("Index");
                 }
                 else
                 {
-                    return View(project);
+                    return View(TaskStatus);
                 }
             }
             catch
@@ -89,9 +90,9 @@ namespace RelA.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Delete(int projectID)
+        public ActionResult Delete(int TaskStatusID)
         {
-            repository.Delete(projectID);
+            repository.Delete(TaskStatusID);
 
             return RedirectToAction("Index");
         }

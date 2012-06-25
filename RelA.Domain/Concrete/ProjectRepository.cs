@@ -16,9 +16,9 @@ namespace RelA.Domain.Concrete
             context = new RelAContext();
         }
 
-        public IQueryable<Entities.Project> GetAll()
+        public IQueryable<Entities.Project> GetAll
         {
-            return context.Projects;
+            get { return context.Projects; }
         }
 
         public void Save(Entities.Project entity)

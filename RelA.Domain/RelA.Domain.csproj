@@ -53,6 +53,7 @@
     <Compile Include="Abstract\IUserRepository.cs" />
     <Compile Include="Concrete\ProjectRepository.cs" />
     <Compile Include="Concrete\RelAContext.cs" />
+    <Compile Include="Concrete\TaskStatusRepository.cs" />
     <Compile Include="Concrete\UserRepository.cs" />
     <Compile Include="Entities\Change.cs" />
     <Compile Include="Entities\Project.cs" />

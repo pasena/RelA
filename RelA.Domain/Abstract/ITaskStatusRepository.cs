@@ -6,10 +6,7 @@ using RelA.Domain.Entities;
 
 namespace RelA.Domain.Abstract
 {
-    interface ITaskStatusRepository
+    public interface ITaskStatusRepository : IRepositoryBase<TaskStatus>
     {
-        IQueryable<TaskStatus> Status { get; }
-
-        void SaveStatus(TaskStatus status);
     }
 }
