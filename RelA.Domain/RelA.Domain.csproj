@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F4FF1814-D6F4-4D0F-AB79-2EEB7F0D9C0C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RelA.Domain</RootNamespace>
+    <AssemblyName>RelA.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.4.3.1\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abstract\IProjectRepository.cs" />
+    <Compile Include="Abstract\IRepositoryBase.cs" />
+    <Compile Include="Abstract\ITaskRepository.cs" />
+    <Compile Include="Abstract\ITaskStatusRepository.cs" />
+    <Compile Include="Abstract\IUserRepository.cs" />
+    <Compile Include="Concrete\ProjectRepository.cs" />
+    <Compile Include="Concrete\RelAContext.cs" />
+    <Compile Include="Concrete\TaskStatusRepository.cs" />
+    <Compile Include="Concrete\UserRepository.cs" />
+    <Compile Include="Entities\Change.cs" />
+    <Compile Include="Entities\Project.cs" />
+    <Compile Include="Entities\Task.cs" />
+    <Compile Include="Entities\TaskStatus.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="Migrations\201206180251586_Initial.cs" />
+    <Compile Include="Migrations\201206180251586_Initial.Designer.cs">
+      <DependentUpon>201206180251586_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201206180301187_RequiredFields.cs" />
+    <Compile Include="Migrations\201206180301187_RequiredFields.Designer.cs">
+      <DependentUpon>201206180301187_RequiredFields.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201206180304350_MaxLenghthFields.cs" />
+    <Compile Include="Migrations\201206180304350_MaxLenghthFields.Designer.cs">
+      <DependentUpon>201206180304350_MaxLenghthFields.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201206242319496_Project Table.cs" />
+    <Compile Include="Migrations\201206242319496_Project Table.Designer.cs">
+      <DependentUpon>201206242319496_Project Table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201206260145477_TaskStatus Color.cs" />
+    <Compile Include="Migrations\201206260145477_TaskStatus Color.Designer.cs">
+      <DependentUpon>201206260145477_TaskStatus Color.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
