@@ -1,0 +1,17 @@
+﻿@model RelA.Domain.Entities.User
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>
+    Criar Novo Usuário</h2>
+<div class="toolBar">
+    @Html.ActionLink("Cancelar", "Index")
+</div>
+<hr />
+@using (@Html.BeginForm("Edit", "User"))
+{
+    @Html.EditorForModel(Model)
+    
+    <input type="submit" value="Cadastrar" class="actionButtons" /> 
+}
