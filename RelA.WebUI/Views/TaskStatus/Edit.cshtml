@@ -1,0 +1,31 @@
+﻿@model RelA.Domain.Entities.TaskStatus
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        $(".color-picker").miniColors({
+            letterCase: 'uppercase',
+            change: function (hex, rgb) {
+                
+            }
+        });
+    });
+</script>
+<h2>
+    @ViewBag.Title
+</h2>
+<div class="toolBar">
+    @Html.ActionLink("Cancelar", "Index")
+</div>
+<hr />
+@using (@Html.BeginForm("Edit", "TaskStatus"))
+{
+    @*@Html.EditorForModel(Model)*@
+    @Html.HiddenFor(h=>h.TaskStatusID)
+    @Html.EditorFor(e => e.Description) <input type="hidden" name="color" class="color-picker" size="6" value="@Model.Color" />
+    <br />
+    <input type="submit" value="Cadastrar" class="actionButtons" /> 
+}
+
+

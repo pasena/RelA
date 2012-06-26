@@ -1,0 +1,65 @@
+﻿@model RelA.WebUI.Models.TaskStatusViewModel
+@using RelA.Domain.Entities;
+@{
+    ViewBag.Title = "Consultar Tipos de Status";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>
+    Pesquisar Usuários</h2>
+<hr />
+@using (Html.BeginForm())
+{
+    <span class="label">Descrição:</span>
+    <br />
+    @Html.TextBoxFor(m => m.Filter.Description)
+    <br />
+    <input type="submit" value="Pesquisar" class="actionButtons" />
+}
+<h3>
+    Resultado</h3>
+<div class="toolBar">@Html.ActionLink("Create a new Status", "Create")</div>
+<hr />
+@if (Model.Entity != null && Model.Entity.Count() > 0)
+{
+    <table class="Grid">
+        <thead>
+            <tr>
+                <th>
+                    Projeto
+                </th>
+                <th style="width: 100px">
+                </th>
+                <th>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (TaskStatus item in Model.Entity)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(item.Description, "Edit", new { TaskStatusID = item.TaskStatusID })
+                    </td>
+                    <td>
+                        <div style="width:16px; height:16px; margin:auto; border:1px solid black; position:inherit; background-color:@item.Color">
+                        </div>
+                    </td>
+                    <td class="buttons">
+                        @using (Html.BeginForm("Delete", "TaskStatus"))
+                        {
+                            @Html.Hidden("TaskStatusID", item.TaskStatusID)
+                            <input type="submit" value="Delete" class="actionButtons" onclick="return confirm('You really want to delete this user?');" />
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>    
+    <div class="pager">
+        @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x }))
+    </div>
+}
+else
+{
+    @:Nenhum registro encontrado!
+}
