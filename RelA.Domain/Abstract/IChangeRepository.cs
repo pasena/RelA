@@ -6,7 +6,7 @@ using RelA.Domain.Entities;
 
 namespace RelA.Domain.Abstract
 {
-    public interface ITaskRepository : IRepositoryBase<Task>
+    public interface IChangeRepository : IRepositoryBase<Change>
     {
     }
 }

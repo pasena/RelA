@@ -15,5 +15,6 @@ namespace RelA.Domain.Concrete
         public DbSet<Task> Tasks { get; set; }
         public DbSet<TaskStatus> TaskStatus { get; set; }
         public DbSet<Project> Projects { get; set; }
+        public DbSet<TaskHistory> TaskHistories { get; set; }
     }
 }

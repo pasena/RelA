@@ -46,13 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IChangeRepository.cs" />
     <Compile Include="Abstract\IProjectRepository.cs" />
     <Compile Include="Abstract\IRepositoryBase.cs" />
     <Compile Include="Abstract\ITaskRepository.cs" />
     <Compile Include="Abstract\ITaskStatusRepository.cs" />
     <Compile Include="Abstract\IUserRepository.cs" />
+    <Compile Include="Concrete\ChangeRepository.cs" />
     <Compile Include="Concrete\ProjectRepository.cs" />
     <Compile Include="Concrete\RelAContext.cs" />
+    <Compile Include="Concrete\TaskRepository.cs" />
     <Compile Include="Concrete\TaskStatusRepository.cs" />
     <Compile Include="Concrete\UserRepository.cs" />
     <Compile Include="Entities\Change.cs" />
