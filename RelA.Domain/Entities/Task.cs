@@ -25,15 +25,14 @@ namespace RelA.Domain.Entities
         public DateTime? ConclusionDate { get; set; }
 
         [Required(ErrorMessage = "Obrigatorio!")]
-        public virtual TaskStatus Status { get; set; }
-
-        [Required(ErrorMessage = "Obrigatorio!")]
         public virtual User User { get; set; }
 
         [StringLength(500, ErrorMessage = "{0} não pode exceder {1} caracteres")]
         public string Note { get; set; }
 
         [Required]
-        public virtual int ProjectID { get; set; }
+        public virtual Project ProjectID { get; set; }
+
+        public virtual ICollection<TaskHistory> History { get; set; }
     }
 }

@@ -58,6 +58,7 @@
     <Compile Include="Entities\Change.cs" />
     <Compile Include="Entities\Project.cs" />
     <Compile Include="Entities\Task.cs" />
+    <Compile Include="Entities\TaskHistory.cs" />
     <Compile Include="Entities\TaskStatus.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Migrations\201206180251586_Initial.cs" />
@@ -79,6 +80,10 @@
     <Compile Include="Migrations\201206260145477_TaskStatus Color.cs" />
     <Compile Include="Migrations\201206260145477_TaskStatus Color.Designer.cs">
       <DependentUpon>201206260145477_TaskStatus Color.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201206270121152_TaskHistory.cs" />
+    <Compile Include="Migrations\201206270121152_TaskHistory.Designer.cs">
+      <DependentUpon>201206270121152_TaskHistory.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
