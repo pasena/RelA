@@ -1,0 +1,42 @@
+﻿@model RelA.WebUI.Models.Create.TaskAddViewModel 
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript" language="javascript">
+    $(document).ready(function () {
+        $(".date").datepicker();
+    });
+</script>
+<h2>
+    Criar Novo Usuário</h2>
+<div class="toolBar">
+    @Html.ActionLink("Cancelar", "Index")
+</div>
+<hr />
+@using (@Html.BeginForm("Edit", "Task"))
+{
+@*@Html.EditorForModel(Model)*@
+    
+    <span class="label">Atividade:</span>
+    <br />
+    @Html.EditorFor(m => m.Task.Title)
+    <br />
+    <span class="label">Descrição:</span>
+    <br />
+    @Html.EditorFor(m => m.Task.Description)
+    <br />
+    <span class="label">Data de Solicitação:</span>
+    <br />
+    @Html.EditorFor(m => m.Task.RequestDate)
+    <br />
+    <span class="label">Projeto:</span>
+    <br />
+    @Html.DropDownListFor(m => m.Task.Project, new SelectList(Model.Projetos, "ProjectID", "Name"), "Please select a project")
+    <br />
+    <span class="label">Observação:</span>
+    <br />
+    @Html.EditorFor(m => m.Task.Note)
+    <br />
+    <input type="submit" value="Salvar" class="actionButtons" /> 
+}

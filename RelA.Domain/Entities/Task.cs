@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace RelA.Domain.Entities
 {
     public class Task
     {
+        [HiddenInput(DisplayValue=false)]
         public int TaskID { get; set; }
 
         [Required(ErrorMessage = "Obrigatorio!")]
@@ -31,7 +33,7 @@ namespace RelA.Domain.Entities
         public string Note { get; set; }
 
         [Required]
-        public virtual Project ProjectID { get; set; }
+        public virtual Project Project { get; set; }
 
         public virtual ICollection<TaskHistory> History { get; set; }
     }

@@ -1,0 +1,86 @@
+﻿@using RelA.Domain.Entities;
+@model RelA.WebUI.Models.TaskViewModel
+@{
+    ViewBag.Title = "Atividades";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>
+    Pesquisar Atividades</h2>
+<hr />
+@using (Html.BeginForm())
+{
+    <span class="label">Atividade:</span>
+    <br />
+    @Html.TextBoxFor(m => m.Filter.Title)
+    <br />
+    <input type="submit" value="Pesquisar" class="actionButtons" />
+    <h3>
+        Resultado</h3>
+    <div class="toolBar">@Html.ActionLink("Create a new User", "Create")</div>
+    <hr />
+}
+@if (Model.Entity != null && Model.Entity.Count() > 0)
+{
+    <table class="Grid">
+        <thead>
+            <tr>
+                <th>
+                    Projeto
+                </th>
+                <th>
+                    Atividade
+                </th>
+                <th>
+                    Descrição
+                </th>
+                <th>
+                    Data de solicitação
+                </th>
+                <th>
+                    Data de conclusão
+                </th>
+                <th>
+                    Observações
+                </th>
+                <th>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Task item in Model.Entity)
+            {
+                <tr>
+                    <td>
+                        @item.Project.Name
+                    </td>
+                    <td>
+                        @Html.ActionLink(item.Title, "Edit", new { TaskID = item.TaskID })
+                    </td>
+                    <td>
+                        @item.Description
+                    </td>
+                    <td>
+                        @item.RequestDate.ToShortDateString()
+                    </td>
+                    <td>
+                        @item.ConclusionDate
+                    </td>
+                    <td>
+                        @item.Note
+                    </td>
+                    <td class="buttons">
+                        @using (Html.BeginForm("Delete", "User"))
+                        {
+                            @Html.Hidden("TaskID", item.TaskID)
+                            <input type="submit" value="Delete" class="actionButtons" onclick="return confirm('You really want to delete this task?');" />
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    @:Nenhum registro encontrado!
+}

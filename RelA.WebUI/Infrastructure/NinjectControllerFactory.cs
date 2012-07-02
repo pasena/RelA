@@ -29,6 +29,7 @@ namespace RelA.WebUI.Infrastructure
             this.kernel.Bind<IUserRepository>().To<UserRepository>();
             this.kernel.Bind<IProjectRepository>().To<ProjectRepository>();
             this.kernel.Bind<ITaskStatusRepository>().To<TaskStatusRepository>();
+            this.kernel.Bind<ITaskRepository>().To<TaskRepository>();
         }
     }
 }

@@ -88,6 +88,10 @@
     <Compile Include="Migrations\201206270121152_TaskHistory.Designer.cs">
       <DependentUpon>201206270121152_TaskHistory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201207010141558_Task_Project.cs" />
+    <Compile Include="Migrations\201207010141558_Task_Project.Designer.cs">
+      <DependentUpon>201207010141558_Task_Project.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

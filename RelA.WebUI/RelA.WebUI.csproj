@@ -69,6 +69,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
+    <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Controllers\TaskStatusController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -77,12 +78,15 @@
     <Compile Include="HtmlHelpers\PagingHelpers.cs" />
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Create\TaskAddViewModel.cs" />
+    <Compile Include="Models\Filters\TaskFilter.cs" />
     <Compile Include="Models\Filters\ProjectFilter.cs" />
     <Compile Include="Models\Filters\TaskStatusFilter.cs" />
     <Compile Include="Models\Filters\UserFilter.cs" />
     <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Models\ProjectViewModel.cs" />
     <Compile Include="Models\TaskStatusViewModel.cs" />
+    <Compile Include="Models\TaskViewModel.cs" />
     <Compile Include="Models\ViewModelBase.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -231,6 +235,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\images\Thumbs.db" />
+    <Content Include="Views\Task\Index.cshtml" />
+    <Content Include="Views\Task\Edit.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
