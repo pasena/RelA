@@ -21,5 +21,9 @@ namespace RelA.Domain.Entities
         public string Color { get; set; }
 
         public virtual ICollection<Task> Tasks { get; set; }
+
+        public DateTime? DeleteDate { get; set; }
+
+        public bool CanDelete { get; set; }
     }
 }

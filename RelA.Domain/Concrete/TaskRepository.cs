@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using RelA.Domain.Abstract;
 using RelA.Domain.Entities;
+using System.Data.Entity;
 
 namespace RelA.Domain.Concrete
 {
-    public class TaskRepository: ITaskRepository
+    public class TaskRepository : ITaskRepository
     {
         private RelAContext context = null;
 
@@ -50,6 +51,20 @@ namespace RelA.Domain.Concrete
             }
 
             context.SaveChanges();
+        }
+
+        public void ChangeStatus(Task task, int taskStatusID)
+        {
+            if (task != null && taskStatusID > 0)
+            {
+                TaskStatus status = context.TaskStatus.FirstOrDefault(w => w.TaskStatusID == taskStatusID);
+
+                if (status != null)
+                {
+                    task.History.Add(new TaskHistory { Status = status, HistoryDate = DateTime.Now });
+                    context.SaveChanges();
+                }
+            }
         }
     }
 }

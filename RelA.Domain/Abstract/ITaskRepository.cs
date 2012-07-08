@@ -8,5 +8,6 @@ namespace RelA.Domain.Abstract
 {
     public interface ITaskRepository : IRepositoryBase<Task>
     {
+        void ChangeStatus(Task task, int taskStatusID);
     }
 }
