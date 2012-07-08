@@ -9,5 +9,6 @@ namespace RelA.WebUI.Models
 {
     public class TaskViewModel: ViewModelBase<Task, TaskFilter>
     {
+        public IEnumerable<Project> Projects { get; set; }
     }
 }

@@ -16,8 +16,9 @@
 <hr />
 @using (@Html.BeginForm("Edit", "Task"))
 {
-@*@Html.EditorForModel(Model)*@
-    
+    @Html.EditorFor(m=>m.Task.TaskID)
+    @Html.EditorFor(m => m.Task.UserID)
+
     <span class="label">Atividade:</span>
     <br />
     @Html.EditorFor(m => m.Task.Title)
@@ -32,7 +33,7 @@
     <br />
     <span class="label">Projeto:</span>
     <br />
-    @Html.DropDownListFor(m => m.Task.Project, new SelectList(Model.Projetos, "ProjectID", "Name"), "Please select a project")
+    @Html.DropDownListFor(m => m.Task.ProjectID, new SelectList(Model.Projects, "ProjectID", "Name"), "Please select a project")
     <br />
     <span class="label">Observação:</span>
     <br />

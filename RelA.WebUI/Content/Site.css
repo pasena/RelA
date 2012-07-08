@@ -238,11 +238,11 @@ input[type="submit"]
     padding: 5px;
 }
 
-.actionButtons A, INPUT.actionButtons
+A.actionButtons, INPUT.actionButtons
 {
     font: .8em Arial;
     color: White;
-    margin-top: .5em;
+    margin-top: 1.5em;
     text-decoration: none;
     padding: .15em 1.5em .2em 1.5em;
     background-color: #5c87b2;
@@ -392,9 +392,16 @@ TABLE.Grid
     border-collapse: collapse;
     width: 100%;
 }
+
 TABLE.Grid TH.NumericCol, Table.Grid TD.NumericCol
 {
     text-align: right;
+    padding-right: 1em;
+}
+
+TABLE.Grid TH.DateCol, Table.Grid TD.DateCol
+{
+    text-align: center;
     padding-right: 1em;
 }
 
@@ -403,6 +410,18 @@ TABLE.Grid TD.buttons
     width: 5%;
     text-align: center;
 }
+
+TABLE.Grid A.actionButtons, TABLE.Grid INPUT.actionButtons
+{
+    font: .8em Arial;
+    color: White;
+    margin-top: .5em;
+    text-decoration: none;
+    padding: .15em 1.5em .2em 1.5em;
+    background-color: #5c87b2;
+    border: 1px solid black;
+}
+
 
 DIV.pager
 {
@@ -433,6 +452,9 @@ DIV.pager A.selected
 
 DIV.toolBar
 {
+    width:100%;
+    float:right;
+    margin-bottom:1.5em;
     text-align:right;
 }
 
@@ -441,4 +463,10 @@ DIV.toolBar A
     font-size: 1.1em;
     text-decoration: none;
     padding: 0 .4em 0 .4em;
+}
+
+form.buttons
+{
+    margin-left:0.5em;
+    float:right;
 }

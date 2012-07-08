@@ -13,17 +13,25 @@ namespace RelA.WebUI.Controllers
 {
     public class TaskController : Controller
     {
-        ITaskRepository repository = null;
+        ITaskRepository taskRepository = null;
+        IProjectRepository projectRepository = null;
+        IUserRepository userRepository = null;
+        ITaskStatusRepository statusRepository = null;
 
-        public TaskController(ITaskRepository repo)
+        public TaskController(ITaskRepository taskRepo, IProjectRepository projectRepo, IUserRepository userRepo, ITaskStatusRepository statusRepository)
         {
-            this.repository = repo;
+            this.taskRepository = taskRepo;
+            this.projectRepository = projectRepo;
+            this.userRepository = userRepo;
+            this.statusRepository = statusRepository;
         }
 
         public ActionResult Index()
         {
             TaskViewModel model = new TaskViewModel();
-            model.Entity = repository.GetAll.OrderBy(o => o.Project.ProjectID).ThenBy(o => o.Title);
+
+            model.Entity = this.taskRepository.GetAll.OrderBy(o => o.Project.ProjectID).ThenBy(o => o.Title).ToList();
+            model.Projects = this.projectRepository.GetAll;
 
             return View(model);
         }
@@ -31,8 +39,7 @@ namespace RelA.WebUI.Controllers
         [HttpPost]
         public ActionResult Index(TaskViewModel model)
         {
-
-            IQueryable<Task> query = repository.GetAll;
+            IQueryable<Task> query = this.taskRepository.GetAll;
 
             if (!string.IsNullOrWhiteSpace(model.Filter.Title))
                 query = query.Where(w => w.Title.Contains(model.Filter.Title));
@@ -47,21 +54,56 @@ namespace RelA.WebUI.Controllers
                 query = query.Where(w => w.RequestDate <= model.Filter.RequestDateTo);
 
             model.Entity = query;
+            model.Projects = this.projectRepository.GetAll;
+
+            return View(model);
+        }
+
+        public ViewResult Details(int taskID)
+        {
+            TaskDetailsViewModel model = new TaskDetailsViewModel();
+
+            model.Task = taskRepository.GetAll.FirstOrDefault(w => w.TaskID == taskID);
+            model.Status = statusRepository.GetAll;
 
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult Edit(TaskAddViewModel task)
+        public ActionResult ChangeStatus(TaskDetailsViewModel model)
+        {
+            Task task = taskRepository.GetAll.FirstOrDefault(w => w.TaskID == model.Task.TaskID);
+
+            if (task.History != null && task.History.Count > 0)
+            {
+                if (model.SelectedTaskStatusID > 0 && model.SelectedTaskStatusID != task.History.Last().Status.TaskStatusID)
+                {
+                    taskRepository.ChangeStatus(task, model.SelectedTaskStatusID);
+                }
+            }
+            else
+            {
+                taskRepository.ChangeStatus(task, model.SelectedTaskStatusID);
+            }
+
+            model.Status = statusRepository.GetAll;
+
+            return RedirectToAction("Details", new { taskID = model.Task.TaskID });
+        }
+
+        [HttpPost]
+        public ActionResult Edit(TaskAddViewModel model)
         {
             if (ModelState.IsValid)
             {
-                this.repository.Save(task.Task);
+                this.taskRepository.Save(model.Task);
 
                 return RedirectToAction("Index");
             }
 
-            return View(task);
+            model.Projects = projectRepository.GetAll;
+
+            return View(model);
         }
 
         [HttpGet]
@@ -69,9 +111,8 @@ namespace RelA.WebUI.Controllers
         {
             TaskAddViewModel editTask = new TaskAddViewModel();
 
-            editTask.Task = this.repository.GetAll.FirstOrDefault(t => t.TaskID == TaskID);
-
-            editTask.Projetos = (new ProjectRepository().GetAll);
+            editTask.Task = this.taskRepository.GetAll.FirstOrDefault(t => t.TaskID == TaskID);
+            editTask.Projects = this.projectRepository.GetAll;
 
             if (editTask.Task != null)
             {
@@ -86,18 +127,20 @@ namespace RelA.WebUI.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            TaskAddViewModel task = new TaskAddViewModel();
+            TaskAddViewModel model = new TaskAddViewModel();
 
-            task.Task= new Task();
-            task.Projetos = (new ProjectRepository().GetAll);
+            model.Task = new Task();
 
-            return View("Edit", task);
+            model.Task.UserID = 1;
+            model.Projects = this.projectRepository.GetAll;
+
+            return View("Edit", model);
         }
 
         [HttpPost]
         public ActionResult Delete(int TaskID)
         {
-            repository.Delete(TaskID);
+            taskRepository.Delete(TaskID);
 
             return RedirectToAction("Index");
         }

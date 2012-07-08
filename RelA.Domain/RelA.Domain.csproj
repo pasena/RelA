@@ -92,6 +92,18 @@
     <Compile Include="Migrations\201207010141558_Task_Project.Designer.cs">
       <DependentUpon>201207010141558_Task_Project.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201207042307520_UserModification.cs" />
+    <Compile Include="Migrations\201207042307520_UserModification.Designer.cs">
+      <DependentUpon>201207042307520_UserModification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201207080346174_TaskStatusDeleteDate.cs" />
+    <Compile Include="Migrations\201207080346174_TaskStatusDeleteDate.Designer.cs">
+      <DependentUpon>201207080346174_TaskStatusDeleteDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201207080347343_TaskStatusCanDelete.cs" />
+    <Compile Include="Migrations\201207080347343_TaskStatusCanDelete.Designer.cs">
+      <DependentUpon>201207080347343_TaskStatusCanDelete.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

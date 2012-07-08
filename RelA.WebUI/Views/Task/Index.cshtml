@@ -9,14 +9,26 @@
 <hr />
 @using (Html.BeginForm())
 {
-    <span class="label">Atividade:</span>
+    <div class="display-label">
+        <label>
+            Atividade:
+        </label>
+    </div>
     <br />
     @Html.TextBoxFor(m => m.Filter.Title)
+    <br />
+    <div class="display-label">
+        <label>
+            Data de Solicitacao:
+        </label>
+    </div>
+    <br />
+    @Html.DropDownListFor(x => x.Filter.ProjectID, new SelectList(Model.Projects, "ProjectID", "Name"), "Todos")
     <br />
     <input type="submit" value="Pesquisar" class="actionButtons" />
     <h3>
         Resultado</h3>
-    <div class="toolBar">@Html.ActionLink("Create a new User", "Create")</div>
+    <div class="toolBar">@Html.ActionLink("Create a new Task", "Create")</div>
     <hr />
 }
 @if (Model.Entity != null && Model.Entity.Count() > 0)
@@ -30,20 +42,14 @@
                 <th>
                     Atividade
                 </th>
-                <th>
-                    Descrição
+                <th class="DateCol">
+                    Solicitação
                 </th>
-                <th>
-                    Data de solicitação
+                <th class="DateCol">
+                    Conclusão
                 </th>
-                <th>
-                    Data de conclusão
-                </th>
-                <th>
-                    Observações
-                </th>
-                <th>
-                </th>
+                @* <th>
+                </th>*@
             </tr>
         </thead>
         <tbody>
@@ -54,27 +60,21 @@
                         @item.Project.Name
                     </td>
                     <td>
-                        @Html.ActionLink(item.Title, "Edit", new { TaskID = item.TaskID })
+                        @Html.ActionLink(item.Title, "Details", new { TaskID = item.TaskID })
                     </td>
-                    <td>
-                        @item.Description
-                    </td>
-                    <td>
+                    <td class="DateCol">
                         @item.RequestDate.ToShortDateString()
                     </td>
-                    <td>
-                        @item.ConclusionDate
+                    <td class="DateCol">
+                        @(item.ConclusionDate.HasValue ? item.ConclusionDate.Value.ToShortDateString() : string.Empty)
                     </td>
-                    <td>
-                        @item.Note
-                    </td>
-                    <td class="buttons">
-                        @using (Html.BeginForm("Delete", "User"))
+                    @* <td class="buttons">
+                        @using (Html.BeginForm("Details", "Task"))
                         {
                             @Html.Hidden("TaskID", item.TaskID)
-                            <input type="submit" value="Delete" class="actionButtons" onclick="return confirm('You really want to delete this task?');" />
+                            <input type="submit" value="Detalhar" class="actionButtons" />
                         }
-                    </td>
+                    </td>*@
                 </tr>
             }
         </tbody>

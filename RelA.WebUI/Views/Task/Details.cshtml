@@ -1,0 +1,112 @@
+﻿@using RelA.Domain.Entities
+@model RelA.WebUI.Models.Create.TaskDetailsViewModel
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>
+    Detelhe</h2>
+<div class="toolBar">
+    @using (Html.BeginForm("Index", "Task", FormMethod.Get, new { @class = "buttons" }))
+    {
+        <input type="submit" value="Voltar" class="actionButtons" />
+    }
+    @using (Html.BeginForm("Delete", "Task", FormMethod.Post, new { @class = "buttons" }))
+    {
+        Html.HiddenFor(x => x.Task.TaskID);
+        <input type="submit" value="Excluir" class="actionButtons" onclick="return confirm('Deseja realmente excluir esta atividades')" />
+    }
+    @using (Html.BeginForm("Edit", "Task", FormMethod.Get, new { @class = "buttons" }))
+    {
+        @Html.Hidden("TaskID", Model.Task.TaskID)
+        <input type="submit" value="Editar" class="actionButtons" />
+    }
+</div>
+@*@Html.ActionLink("Cancelar", "Index")*@
+<hr />
+@{Html.RenderPartial("TaskSummary", Model.Task);}
+<h3>
+    Modificações</h3>
+<hr />
+@if (Model.Task.Changes.Count > 0)
+{
+    <table class="Grid">
+        <thead>
+            <tr>
+                <th>
+                    Unidade
+                </th>
+                <th>
+                    Modificação
+                </th>
+                <th>
+                    Observação
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Change item in Model.Task.Changes)
+            {
+                <tr>
+                    <th>
+                        @item.Unit
+                    </th>
+                    <th>
+                        @item.Modification
+                    </th>
+                    <th>
+                        @item.Note
+                    </th>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    @:Nenhuma modificação realizada
+}
+<h3>
+    Historico</h3>
+<div class="toolBar">
+    @using (Html.BeginForm("ChangeStatus", "Task", FormMethod.Post, new { @class = "buttons" }))
+    {
+        @Html.HiddenFor(m=> Model.Task.TaskID)
+        @Html.DropDownListFor(x => x.SelectedTaskStatusID, new SelectList(Model.Status, "TaskStatusID", "Description"), "Select a new status")
+        <input type="submit" value="Modificar" class="actionButtons" />
+    }
+</div>
+<hr />
+<table class="Grid">
+    <thead>
+        <tr>
+            <th>
+                Status
+            </th>
+            <th class="DateCol">
+                Data de Modificação
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (TaskHistory item in Model.Task.History)
+        {
+            <tr style="background-color:@item.Status.Color; color:black;" >
+                <td>
+
+                    @item.Status.Description
+                </td>
+                <td class="DateCol">
+                    @item.HistoryDate.ToShortDateString()
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@*<div class="display-label">
+    <label>
+        Atividade:
+    </label>
+</div>
+@Html.DisplayFor(d=>d.Title)
+*@ 
