@@ -81,7 +81,8 @@
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
     <Compile Include="Infrastructure\RelAAuthentication.cs" />
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\Create\TaskDetailsViewModel.cs" />
+    <Compile Include="Models\Create\TaskChangeViewModel.cs" />
+    <Compile Include="Models\TaskDetailsViewModel.cs" />
     <Compile Include="Models\Create\TaskAddViewModel.cs" />
     <Compile Include="Models\Filters\TaskFilter.cs" />
     <Compile Include="Models\Filters\ProjectFilter.cs" />
@@ -244,6 +245,7 @@
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
     <Content Include="Views\Task\Details.cshtml" />
     <Content Include="Views\Shared\TaskSummary.cshtml" />
+    <Content Include="Views\Task\AddChange.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

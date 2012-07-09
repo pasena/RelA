@@ -104,6 +104,18 @@
     <Compile Include="Migrations\201207080347343_TaskStatusCanDelete.Designer.cs">
       <DependentUpon>201207080347343_TaskStatusCanDelete.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201207080351244_TaskStatusIsDefault.cs" />
+    <Compile Include="Migrations\201207080351244_TaskStatusIsDefault.Designer.cs">
+      <DependentUpon>201207080351244_TaskStatusIsDefault.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201207081423004_ChangeLenght.cs" />
+    <Compile Include="Migrations\201207081423004_ChangeLenght.Designer.cs">
+      <DependentUpon>201207081423004_ChangeLenght.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201207082121268_TaskRemoveConclusionDate.cs" />
+    <Compile Include="Migrations\201207082121268_TaskRemoveConclusionDate.Designer.cs">
+      <DependentUpon>201207082121268_TaskRemoveConclusionDate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -24,6 +24,6 @@ namespace RelA.Domain.Entities
 
         public DateTime? DeleteDate { get; set; }
 
-        public bool CanDelete { get; set; }
+        public bool IsDefault { get; set; }
     }
 }

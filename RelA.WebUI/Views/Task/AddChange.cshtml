@@ -1,0 +1,50 @@
+﻿@model RelA.WebUI.Models.Create.TaskChangeViewModel
+@{
+    ViewBag.Title = "Adicionar Modificação";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>
+    Adcionar Mudança</h2>
+<hr />
+@using (Html.BeginForm("AddChange", "Task"))
+{
+    @Html.HiddenFor(m => m.TaskID)
+    @Html.HiddenFor(m=>m.Change.TaskID)
+
+    <div class="display-label">
+        <label>
+            Projeto:</label>
+    </div>
+    <div class="display-field">
+        @Html.HiddenFor(m => m.ProjectName)
+        @Html.DisplayFor(m => m.ProjectName)
+    </div>
+    <div class="display-label">
+        <label>
+            Atividade:</label>
+    </div>
+    <div class="display-field">
+        @Html.HiddenFor(m => m.TaskTitle)
+        @Html.DisplayFor(m => m.TaskTitle)
+    </div>
+    <hr />
+    <h3>
+        Modificação</h3>
+        
+    <div class="editor-label">
+        <label>
+            Unidade:</label>
+    </div>
+    <div class="editor-field">@Html.EditorFor(m => m.Change.Unit)</div>
+    <div class="editor-label">
+        <label>
+            Modificação</label>
+    </div>
+    <div class="editor-field">@Html.EditorFor(m => m.Change.Modification)</div>
+    <div class="editor-label">
+        <label>
+            Observação:</label>
+    </div>
+    <div class="editor-field">@Html.EditorFor(m => m.Change.Note)</div>
+    <input type="submit" value="Salvar" class="actionButtons" />
+}

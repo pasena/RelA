@@ -36,7 +36,7 @@
             {
                 <tr>
                     <td>
-                        @Html.ActionLink(item.Login, "Edit", new { productID = item.UserID })
+                        @Html.ActionLink(item.Login, "Edit", new { userID = item.UserID })
                     </td>
                     <td class="buttons">
                         @using (Html.BeginForm("Delete", "User"))

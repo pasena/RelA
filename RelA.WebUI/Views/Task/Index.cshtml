@@ -37,19 +37,17 @@
         <thead>
             <tr>
                 <th>
-                    Projeto
+                    Atividade
                 </th>
                 <th>
-                    Atividade
+                    Projeto
                 </th>
                 <th class="DateCol">
                     Solicitação
                 </th>
-                <th class="DateCol">
-                    Conclusão
+                <th class="StatusCol">
+                    Status
                 </th>
-                @* <th>
-                </th>*@
             </tr>
         </thead>
         <tbody>
@@ -57,16 +55,16 @@
             {
                 <tr>
                     <td>
-                        @item.Project.Name
+                        @Html.ActionLink(item.Title, "Details", new { TaskID = item.TaskID })
                     </td>
                     <td>
-                        @Html.ActionLink(item.Title, "Details", new { TaskID = item.TaskID })
+                        @item.Project.Name
                     </td>
                     <td class="DateCol">
                         @item.RequestDate.ToShortDateString()
                     </td>
-                    <td class="DateCol">
-                        @(item.ConclusionDate.HasValue ? item.ConclusionDate.Value.ToShortDateString() : string.Empty)
+                    <td class="StatusCol" style="background-color: @(item.History.LastOrDefault() != null ? item.History.LastOrDefault().Status.Color : string.Empty)">
+                        @(item.History.LastOrDefault() != null ? item.History.LastOrDefault().Status.Description : string.Empty)
                     </td>
                     @* <td class="buttons">
                         @using (Html.BeginForm("Details", "Task"))

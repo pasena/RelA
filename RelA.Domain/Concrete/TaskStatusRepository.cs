@@ -44,12 +44,15 @@ namespace RelA.Domain.Concrete
         {
             TaskStatus entity = context.TaskStatus.FirstOrDefault(w => w.TaskStatusID == id);
 
-            if (entity != null)
+            if (!entity.IsDefault)
             {
-                context.TaskStatus.Remove(entity);
-            }
+                if (entity != null)
+                {
+                    context.TaskStatus.Remove(entity);
+                }
 
-            context.SaveChanges();
+                context.SaveChanges();
+            }
         }
     }
 }

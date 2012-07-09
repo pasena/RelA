@@ -6,7 +6,7 @@ using RelA.Domain.Entities;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace RelA.WebUI.Models.Create
+namespace RelA.WebUI.Models
 {
     public class TaskDetailsViewModel
     {

@@ -66,5 +66,52 @@ namespace RelA.Domain.Concrete
                 }
             }
         }
+
+        public void RollBackHistoryStatus(Task task, int historyStatusID)
+        {
+            if (task != null && historyStatusID > 0)
+            {
+                var history = task.History.Where(w => w.TaskHistoryID > historyStatusID).ToList();
+
+                foreach (var item in history)
+                {
+                    context.TaskHistories.Remove(item);
+                }
+
+                context.SaveChanges();
+            }
+        }
+
+        public void AddChange(Change change)
+        {
+            if (change != null)
+            {
+                if (change.ChangeID == 0)
+                {
+                    context.Changes.Add(change);
+                    context.SaveChanges();
+                }
+                else
+                {
+                    Change editChange = context.Changes.FirstOrDefault(w => w.ChangeID == change.ChangeID);
+
+                    if (editChange != null)
+                    {
+                        context.Entry(editChange).CurrentValues.SetValues(change);
+                    }
+                }
+            }
+        }
+
+        public void DeleteChange(int changeID)
+        {
+            Change change = context.Changes.FirstOrDefault(w => w.ChangeID == changeID);
+
+            if (change != null)
+            {
+                context.Changes.Remove(change);
+                context.SaveChanges();
+            }
+        }
     }
 }

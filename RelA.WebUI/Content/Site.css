@@ -71,6 +71,12 @@ h3
     font-size: 1.2em;
 }
 
+h3.toggleTitle
+{
+    font-size: 1.2em;
+    cursor:pointer;
+}
+
 h4
 {
     font-size: 1.1em;
@@ -357,6 +363,7 @@ div#title
 .display-label, .editor-label
 {
     margin: 1em 0 0 0;
+    font-weight:bold;
 }
 
 .display-field, .editor-field
@@ -404,6 +411,14 @@ TABLE.Grid TH.DateCol, Table.Grid TD.DateCol
     text-align: center;
     padding-right: 1em;
 }
+
+TABLE.Grid TH.StatusCol, Table.Grid TD.StatusCol
+{
+    text-align: center;
+    padding-right: 1em;
+    color:Black;
+}
+
 
 TABLE.Grid TD.buttons
 {

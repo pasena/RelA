@@ -28,10 +28,6 @@ namespace RelA.Domain.Entities
         [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime RequestDate { get; set; }
 
-        [Display(Name = "Data de Conclusão:")]
-        [DisplayFormat(DataFormatString="{0:d}")]
-        public DateTime? ConclusionDate { get; set; }
-
         [Required]
         [Range(1, int.MaxValue)]
         [HiddenInput(DisplayValue = false)]

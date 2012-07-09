@@ -7,6 +7,7 @@ using RelA.Domain.Abstract;
 using RelA.WebUI.Models;
 using RelA.Domain.Entities;
 using RelA.WebUI.Models.Create;
+using RelA.WebUI.Models;
 using RelA.Domain.Concrete;
 
 namespace RelA.WebUI.Controllers
@@ -64,7 +65,8 @@ namespace RelA.WebUI.Controllers
             TaskDetailsViewModel model = new TaskDetailsViewModel();
 
             model.Task = taskRepository.GetAll.FirstOrDefault(w => w.TaskID == taskID);
-            model.Status = statusRepository.GetAll;
+
+            model.Status = statusRepository.GetAll.Where(w => !w.DeleteDate.HasValue).ToList();
 
             return View(model);
         }
@@ -74,21 +76,35 @@ namespace RelA.WebUI.Controllers
         {
             Task task = taskRepository.GetAll.FirstOrDefault(w => w.TaskID == model.Task.TaskID);
 
-            if (task.History != null && task.History.Count > 0)
+            if (task != null)
             {
-                if (model.SelectedTaskStatusID > 0 && model.SelectedTaskStatusID != task.History.Last().Status.TaskStatusID)
+                if (task.History != null && task.History.Count > 0)
+                {
+                    if (model.SelectedTaskStatusID > 0 && model.SelectedTaskStatusID != task.History.Last().Status.TaskStatusID)
+                    {
+                        taskRepository.ChangeStatus(task, model.SelectedTaskStatusID);
+                    }
+                }
+                else
                 {
                     taskRepository.ChangeStatus(task, model.SelectedTaskStatusID);
                 }
             }
-            else
-            {
-                taskRepository.ChangeStatus(task, model.SelectedTaskStatusID);
-            }
-
-            model.Status = statusRepository.GetAll;
 
             return RedirectToAction("Details", new { taskID = model.Task.TaskID });
+        }
+
+        [HttpPost]
+        public ActionResult RoolBackStatus(int taskID, int taskHistoryID)
+        {
+            Task task = taskRepository.GetAll.FirstOrDefault(w => w.TaskID == taskID);
+
+            if (task != null && taskHistoryID > 0)
+            {
+                taskRepository.RollBackHistoryStatus(task, taskHistoryID);
+            }
+
+            return RedirectToAction("Details", new { taskID = taskID });
         }
 
         [HttpPost]
@@ -143,6 +159,72 @@ namespace RelA.WebUI.Controllers
             taskRepository.Delete(TaskID);
 
             return RedirectToAction("Index");
+        }
+
+        public ActionResult AddChange(int taskID, int changeID = 0)
+        {
+            Task task = taskRepository.GetAll.FirstOrDefault(w => w.TaskID == taskID);
+            Change editChange = null;
+
+            TaskChangeViewModel model = new TaskChangeViewModel
+                {
+                    TaskID = task.TaskID,
+                    TaskTitle = task.Title,
+                    ProjectName = task.Project.Name
+                };
+
+            if (changeID == 0)
+            {
+                model.Change = new Change { TaskID = task.TaskID };
+            }
+            else
+            {
+                editChange = task.Changes.FirstOrDefault(w => w.ChangeID == changeID);
+
+                if (editChange != null)
+                {
+                    model.Change = editChange;
+                }
+                else
+                {
+                    // ToDo: Adicionar mensagem de modificação não encontrada.
+                    model.Change = new Change { TaskID = task.TaskID };
+                }
+                
+            }
+                                
+            return View(model);
+        }
+
+
+        [HttpPost]
+        public ActionResult AddChange(TaskChangeViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                taskRepository.AddChange(model.Change);
+                return RedirectToAction("Details", new { taskID = model.TaskID });
+            }
+            else
+            {
+                return View(model);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult DeleteChange(int taskID, int changeID)
+        {
+            if (taskID > 0 && changeID > 0)
+            {
+                taskRepository.DeleteChange(changeID);
+
+                return RedirectToAction("Details", new { taskID = taskID });
+            }
+            else
+            {
+                // ToDo: Adicionar erro de validaçãos
+                return RedirectToAction("Index");
+            }
         }
     }
 }
