@@ -196,7 +196,6 @@ namespace RelA.WebUI.Controllers
             return View(model);
         }
 
-
         [HttpPost]
         public ActionResult AddChange(TaskChangeViewModel model)
         {

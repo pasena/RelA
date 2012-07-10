@@ -40,7 +40,7 @@
     }
     @using (Html.BeginForm("Delete", "Task", FormMethod.Post, new { @class = "buttons" }))
     {
-        Html.HiddenFor(x => x.Task.TaskID);
+        @Html.Hidden("TaskID", Model.Task.TaskID)
         <input type="submit" value="Excluir" class="actionButtons" onclick="return confirm('Deseja realmente excluir esta atividades')" />
     }
     @using (Html.BeginForm("Edit", "Task", FormMethod.Get, new { @class = "buttons" }))
@@ -110,7 +110,7 @@
     else
     {
         @:Nenhuma modificação realizada
-                                            }
+                                                }
 </div>
 <h3 id="HistorySection" class="toggleTitle">
     Historico [-]</h3>

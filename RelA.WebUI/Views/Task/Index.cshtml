@@ -1,9 +1,28 @@
 ﻿@using RelA.Domain.Entities;
 @model RelA.WebUI.Models.TaskViewModel
+@if (false)
+{ <script src="../../Scripts/jquery-1.7.2-vsdoc.js" type="text/javascript"></script> }
 @{
     ViewBag.Title = "Atividades";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        $(".plus").click(function () {
+            plus = $(this);
+            summaryHistory = $('.summaryHistory').eq($(".plus").index(this));
+
+            if (summaryHistory.is(":visible")) {
+                summaryHistory.hide();
+                plus.text('+');
+            }
+            else {
+                summaryHistory.show();
+                plus.text('-');
+            }
+        });
+    });
+</script>
 <h2>
     Pesquisar Atividades</h2>
 <hr />
@@ -33,7 +52,7 @@
 }
 @if (Model.Entity != null && Model.Entity.Count() > 0)
 {
-    <table class="Grid">
+    <table class="Grid" id="gridResult">
         <thead>
             <tr>
                 <th>
@@ -55,6 +74,8 @@
             {
                 <tr>
                     <td>
+                        <div style="float: left; margin-left: -1.5em; cursor: pointer" class="plus">
+                            +</div>
                         @Html.ActionLink(item.Title, "Details", new { TaskID = item.TaskID })
                     </td>
                     <td>
@@ -66,13 +87,33 @@
                     <td class="StatusCol" style="background-color: @(item.History.LastOrDefault() != null ? item.History.LastOrDefault().Status.Color : string.Empty)">
                         @(item.History.LastOrDefault() != null ? item.History.LastOrDefault().Status.Description : string.Empty)
                     </td>
-                    @* <td class="buttons">
-                        @using (Html.BeginForm("Details", "Task"))
-                        {
-                            @Html.Hidden("TaskID", item.TaskID)
-                            <input type="submit" value="Detalhar" class="actionButtons" />
-                        }
-                    </td>*@
+                </tr>
+                <tr style="display: none" class="summaryHistory">
+                    <td colspan="4">
+                        <table width="100%">
+                            <thead>
+                                <tr>
+                                    <th class="DateCol">
+                                        Historico
+                                    </th>
+                                    <th class="StatusCol">
+                                        Status
+                                    </th>
+                                </tr>
+                            </thead>
+                            @foreach (TaskHistory history in item.History)
+                            {
+                                <tr>
+                                    <td class="DateCol">
+                                        @history.HistoryDate.ToShortDateString()
+                                    </td>
+                                    <td style="background-color:@history.Status.Color;" class="StatusCol">
+                                        @history.Status.Description
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </td>
                 </tr>
             }
         </tbody>

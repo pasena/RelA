@@ -26,6 +26,14 @@ namespace RelA.Domain.Concrete
         {
             if (entity.TaskID == 0)
             {
+                TaskStatus status = context.TaskStatus.FirstOrDefault(w => w.Description.ToUpper() == "SOLICITADO");
+
+                TaskHistory history = new TaskHistory()
+                {
+                    Status = status,
+                    HistoryDate = DateTime.Now
+                };
+                
                 context.Tasks.Add(entity);
             }
             else
