@@ -1,16 +1,33 @@
-﻿@{
+﻿@model RelA.WebUI.Models.HomeViewModel
+@{
     ViewBag.Title = "Home Page";
 }
 <h2>@ViewBag.Message</h2>
-
-<div style="position: absolute; top: 0; left: 0; right: 50%; border: solid 1px black;
-    margin-right: 1em">
-    <h3>
-        Solicitados</h3>
-    <hr />
+<div class="homeSummaryLine">
+    <div class="homeSummary">
+        <h3>
+            Solicitados</h3>
+        <hr />
+       @{Html.RenderPartial("HomeSummary", Model.Requested);}
+    </div>
+    <div class="homeSummary">
+        <h3>
+            Em desenvolvimento</h3>
+        <hr />
+         @{Html.RenderPartial("HomeSummary", Model.Developing);}
+    </div>
 </div>
-<div style="position: absolute; top: 0; left: 50%; right: 0; bottom: 30%; border: solid 1px black;">
-    <h3>
-        Em desenvolvimento</h3>
-    <hr />
+<div class="homeSummaryLine">
+    <div class="homeSummary">
+        <h3>
+            Concluidos</h3>
+        <hr />
+        @{Html.RenderPartial("HomeSummary", Model.Concluded);}
+    </div>
+    <div class="homeSummary">
+        <h3>
+            Outros</h3>
+        <hr />
+        @{Html.RenderPartial("HomeSummary", Model.Others);}
+    </div>
 </div>

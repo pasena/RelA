@@ -1,0 +1,35 @@
+﻿@using RelA.WebUI.Models
+@model IEnumerable<RelA.WebUI.Models.HomeSummaryViewModel>
+<table class="Grid">
+    <thead>
+        <tr>
+            <th>
+                Atividade
+            </th>
+            <th>
+                Descrição
+            </th>
+            <th class="StatusCol">
+                Status
+            </th>
+            <th class="DateCol">
+                Data de Alteração
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (HomeSummaryViewModel item in Model)
+        {
+            <tr style="background-color:@item.Color; color:@item.Color.GetReadableForeColor()">
+                <td>@item.Title
+                </td>
+                <td>@item.Description
+                </td>
+                <td class="StatusCol">@item.Status
+                </td>
+                <td class="DateCol">@item.ChangeDate.ToShortDateString()
+                </td>
+            </tr>    
+        }
+    </tbody>
+</table>

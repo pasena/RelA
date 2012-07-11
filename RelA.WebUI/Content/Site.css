@@ -74,7 +74,7 @@ h3
 h3.toggleTitle
 {
     font-size: 1.2em;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 h4
@@ -126,6 +126,9 @@ header h1, #header h1
     border-radius: 4px 0 0 0;
     -webkit-border-radius: 4px 0 0 0;
     -moz-border-radius: 4px 0 0 0;
+    min-height: 100%;
+    position: relative;
+    overflow: hidden;
 }
 
 footer, #footer
@@ -363,7 +366,7 @@ div#title
 .display-label, .editor-label
 {
     margin: 1em 0 0 0;
-    font-weight:bold;
+    font-weight: bold;
 }
 
 .display-field, .editor-field
@@ -410,14 +413,14 @@ TABLE.Grid TH.DateCol, Table.Grid TD.DateCol
 {
     text-align: center;
     padding-right: 1em;
-    width:5%;
+    width: 5%;
 }
 
 TABLE.Grid TH.StatusCol, Table.Grid TD.StatusCol
 {
     text-align: center;
     padding-right: 1em;
-    color:Black;
+    color: Black;
 }
 
 
@@ -468,10 +471,10 @@ DIV.pager A.selected
 
 DIV.toolBar
 {
-    width:100%;
-    float:right;
-    margin-bottom:1.5em;
-    text-align:right;
+    width: 100%;
+    float: right;
+    margin-bottom: 1.5em;
+    text-align: right;
 }
 
 DIV.toolBar A
@@ -483,6 +486,27 @@ DIV.toolBar A
 
 form.buttons
 {
-    margin-left:0.5em;
-    float:right;
+    margin-left: 0.5em;
+    float: right;
 }
+
+/* Home - Summary
+--------------------------------------------------------------------*/
+
+DIV.homeSummaryLine
+{
+    overflow: hidden;
+}
+DIV.homeSummary
+{
+    border: solid 1px black;
+    padding: 1em 1em 1em 1em;
+    border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius: 4px 4px 4px 4px;
+    -moz-border-radius: 4px 4px 4px 4px;
+    margin: 0 1em 2em 0;
+    width: 46%;
+    min-height: 100px;
+    float: left;
+}
+
