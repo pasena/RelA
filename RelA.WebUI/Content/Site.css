@@ -410,6 +410,7 @@ TABLE.Grid TH.DateCol, Table.Grid TD.DateCol
 {
     text-align: center;
     padding-right: 1em;
+    width:5%;
 }
 
 TABLE.Grid TH.StatusCol, Table.Grid TD.StatusCol

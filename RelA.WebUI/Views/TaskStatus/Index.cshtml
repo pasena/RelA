@@ -9,10 +9,14 @@
 <hr />
 @using (Html.BeginForm())
 {
-    <span class="label">Descrição:</span>
-    <br />
-    @Html.TextBoxFor(m => m.Filter.Description)
-    <br />
+    <div class="display-label">
+        <label>
+            Descrição</label>
+    </div>
+    <div class="display-field">
+        @Html.TextBoxFor(m => m.Filter.Description)
+    </div>
+    
     <input type="submit" value="Pesquisar" class="actionButtons" />
 }
 <h3>

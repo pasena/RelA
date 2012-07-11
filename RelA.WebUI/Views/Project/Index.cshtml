@@ -1,19 +1,21 @@
 ﻿@model RelA.WebUI.Models.ProjectViewModel
 @using RelA.Domain.Entities;
-
 @{
     ViewBag.Title = "Consultar Usuário";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h2>
-    Pesquisar Usuários</h2>
+    Pesquisar Projetos</h2>
 <hr />
 @using (Html.BeginForm())
 {
-    <span class="label">Projeto:</span>
-    <br />
-    @Html.TextBoxFor(m => m.Filter.Name)
-    <br />
+    <div class="display-label">
+        <label>
+            Projeto:</label>
+    </div>
+    <div class="display-field">
+        @Html.TextBoxFor(m => m.Filter.Name)
+    </div>
     <input type="submit" value="Pesquisar" class="actionButtons" />
 }
 <h3>

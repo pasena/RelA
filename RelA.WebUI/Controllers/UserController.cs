@@ -65,6 +65,8 @@ namespace RelA.WebUI.Controllers
         [HttpGet]
         public ActionResult Edit(int UserID)
         {
+            ViewBag.Title = "Editar Usuário";
+
             User editUser = this.repository.GetAll.FirstOrDefault(u => u.UserID == UserID);
 
             if (editUser != null)
@@ -80,6 +82,8 @@ namespace RelA.WebUI.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            ViewBag.Title = "Criar Novo Usuário";
+
             return View("Edit", new User());
         }
 

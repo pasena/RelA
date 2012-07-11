@@ -33,7 +33,10 @@ namespace RelA.Domain.Concrete
                     Status = status,
                     HistoryDate = DateTime.Now
                 };
-                
+
+                entity.History = new List<TaskHistory>();
+                entity.History.Add(history);
+
                 context.Tasks.Add(entity);
             }
             else

@@ -21,12 +21,11 @@
 <hr />
 @using (@Html.BeginForm("Edit", "TaskStatus"))
 {
-    @*@Html.EditorForModel(Model)*@
     @Html.HiddenFor(h=>h.TaskStatusID)
     @Html.EditorFor(e => e.Description) 
     <input type="hidden" name="color" class="color-picker" size="6" value="@Model.Color" />
     <br />
-    <input type="submit" value="Cadastrar" class="actionButtons" /> 
+    <input type="submit" value="Salvar" class="actionButtons" /> 
 }
 
 

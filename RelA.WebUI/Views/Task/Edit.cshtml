@@ -1,6 +1,6 @@
 ﻿@model RelA.WebUI.Models.Create.TaskAddViewModel 
 @{
-    ViewBag.Title = "Edit";
+   
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <script type="text/javascript" language="javascript">
@@ -9,14 +9,15 @@
     });
 </script>
 <h2>
-    Criar Novo Usuário</h2>
+    @ViewBag.Title
+</h2>
 <div class="toolBar">
     @Html.ActionLink("Cancelar", "Index")
 </div>
 <hr />
 @using (@Html.BeginForm("Edit", "Task"))
 {
-    @Html.EditorFor(m=>m.Task.TaskID)
+    @Html.EditorFor(m => m.Task.TaskID)
     @Html.EditorFor(m => m.Task.UserID)
 
     <span class="label">Atividade:</span>

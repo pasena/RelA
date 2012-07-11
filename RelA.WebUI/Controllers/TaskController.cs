@@ -54,7 +54,7 @@ namespace RelA.WebUI.Controllers
             if (model.Filter.RequestDateTo.HasValue)
                 query = query.Where(w => w.RequestDate <= model.Filter.RequestDateTo);
 
-            model.Entity = query;
+            model.Entity = query.ToList();
             model.Projects = this.projectRepository.GetAll;
 
             return View(model);
@@ -125,6 +125,8 @@ namespace RelA.WebUI.Controllers
         [HttpGet]
         public ActionResult Edit(int TaskID)
         {
+            ViewBag.Title = "Editar Atividade";
+
             TaskAddViewModel editTask = new TaskAddViewModel();
 
             editTask.Task = this.taskRepository.GetAll.FirstOrDefault(t => t.TaskID == TaskID);
@@ -143,6 +145,8 @@ namespace RelA.WebUI.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            ViewBag.Title = "Criar Nova Atividade";
+
             TaskAddViewModel model = new TaskAddViewModel();
 
             model.Task = new Task();
