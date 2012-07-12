@@ -25,59 +25,64 @@ namespace RelA.WebUI.Controllers
         {
             HomeViewModel model = new HomeViewModel();
 
-            model.Color = Color.Red;
-            model.TextColor = model.Color.GetReadableForeColor();
-
-            IEnumerable<Task> tasks = taskRepository.GetAll.Where(w => w.TaskID == 1).ToList();
+            List<Task> tasks = taskRepository.GetAll.ToList();
 
             model.Requested =
-                (from requested in tasks
+                (from task in tasks
+                 let h = task.History.LastOrDefault()
+                 where task.History.LastOrDefault().Status.Description.ToUpper() == "SOLICITADO"
                  select new HomeSummaryViewModel
                  {
-                     Title = requested.Title,
-                     Description = requested.Description,
-                     Status = requested.History.LastOrDefault().Status.Description,
-                     Color = Color.FromName(requested.History.LastOrDefault().Status.Color),
-                     ChangeDate = requested.History.LastOrDefault().HistoryDate
+                     TaskID = task.TaskID,
+                     Title = task.Title,
+                     Description = task.Description,
+                     Status = h.Status.Description,
+                     Color = ColorTranslator.FromHtml(h.Status.Color),
+                     ChangeDate = h.HistoryDate
                  }).ToList();
-
-            tasks = taskRepository.GetAll.Where(w => w.TaskID == 2).ToList();
 
             model.Developing =
-               (from requested in tasks
+               (from task in tasks
+                let h = task.History.LastOrDefault()
+                where task.History.LastOrDefault().Status.Description.ToUpper() == "EM DESENVOLVIMENTO"
                 select new HomeSummaryViewModel
                 {
-                    Title = requested.Title,
-                    Description = requested.Description,
-                    Status = requested.History.LastOrDefault().Status.Description,
-                    Color = Color.FromName(requested.History.LastOrDefault().Status.Color),
-                    ChangeDate = requested.History.LastOrDefault().HistoryDate
+                    TaskID = task.TaskID,
+                    Title = task.Title,
+                    Description = task.Description,
+                    Status = h.Status.Description,
+                    Color = ColorTranslator.FromHtml(h.Status.Color),
+                    ChangeDate = h.HistoryDate
                 }).ToList();
 
-            tasks = taskRepository.GetAll.Where(w => w.TaskID == 3).ToList();
-
             model.Concluded =
-                (from requested in tasks
+                (from task in tasks
+                 let h = task.History.LastOrDefault()
+                 where task.History.LastOrDefault().Status.Description.ToUpper() == "CONCLUIDO"
                  select new HomeSummaryViewModel
                  {
-                     Title = requested.Title,
-                     Description = requested.Description,
-                     Status = requested.History.LastOrDefault().Status.Description,
-                     Color = Color.FromName(requested.History.LastOrDefault().Status.Color),
-                     ChangeDate = requested.History.LastOrDefault().HistoryDate
+                     TaskID = task.TaskID,
+                     Title = task.Title,
+                     Description = task.Description,
+                     Status = h.Status.Description,
+                     Color = ColorTranslator.FromHtml(h.Status.Color),
+                     ChangeDate = h.HistoryDate
                  }).ToList();
 
-            tasks = taskRepository.GetAll.Where(w => w.TaskID == 4).ToList();
-
             model.Others =
-                (from requested in tasks
+                (from task in tasks
+                 let h = task.History.LastOrDefault()
+                 where task.History.LastOrDefault().Status.Description.ToUpper() != "SOLICITADO"
+                    && task.History.LastOrDefault().Status.Description.ToUpper() != "EM DESENVOLVIMENTO"
+                    && task.History.LastOrDefault().Status.Description.ToUpper() != "CONCLUIDO"
                  select new HomeSummaryViewModel
                  {
-                     Title = requested.Title,
-                     Description = requested.Description,
-                     Status = requested.History.LastOrDefault().Status.Description,
-                     Color = Color.FromName(requested.History.LastOrDefault().Status.Color),
-                     ChangeDate = requested.History.LastOrDefault().HistoryDate
+                     TaskID = task.TaskID,
+                     Title = task.Title,
+                     Description = task.Description,
+                     Status = h.Status.Description,
+                     Color = ColorTranslator.FromHtml(h.Status.Color),
+                     ChangeDate = h.HistoryDate
                  }).ToList();
 
             return View(model);

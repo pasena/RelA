@@ -124,5 +124,15 @@ namespace RelA.Domain.Concrete
                 context.SaveChanges();
             }
         }
+
+        public IEnumerable<Task> GetTaskSummary()
+        {
+            IEnumerable<Task> tasks =
+                (from t in context.Tasks
+                 let h = context.TaskHistories.Where(w=>w.Task.TaskID == t.TaskID).FirstOrDefault()
+                 select t);
+
+            return tasks;
+        }
     }
 }

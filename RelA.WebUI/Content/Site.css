@@ -420,7 +420,6 @@ TABLE.Grid TH.StatusCol, Table.Grid TD.StatusCol
 {
     text-align: center;
     padding-right: 1em;
-    color: Black;
 }
 
 
@@ -497,6 +496,7 @@ DIV.homeSummaryLine
 {
     overflow: hidden;
 }
+
 DIV.homeSummary
 {
     border: solid 1px black;

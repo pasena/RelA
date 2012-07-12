@@ -18,6 +18,7 @@ namespace RelA.Domain.Entities
         public string Description { get; set; }
 
         [MaxLength(20)]
+        [Required(ErrorMessage = "Obrigatorio!")]
         public string Color { get; set; }
 
         public virtual ICollection<Task> Tasks { get; set; }

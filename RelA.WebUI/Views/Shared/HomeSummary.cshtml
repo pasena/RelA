@@ -18,10 +18,13 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (HomeSummaryViewModel item in Model)
+        @if (Model.Count() > 0)
         {
-            <tr style="background-color:@item.Color; color:@item.Color.GetReadableForeColor()">
-                <td>@item.Title
+            foreach (HomeSummaryViewModel item in Model)
+            {
+            <tr style="background-color:@item.Color.GetHtmlColor(); color:@item.Color.GetReadableForeColor().Name">
+                <td>
+                    @Html.ActionLink(item.Title, "Details", "Task", new { TaskID = item.TaskID }, null)
                 </td>
                 <td>@item.Description
                 </td>
@@ -30,6 +33,15 @@
                 <td class="DateCol">@item.ChangeDate.ToShortDateString()
                 </td>
             </tr>    
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4">
+                    Nenhum registro encontrado!
+                </td>
+            </tr>
         }
     </tbody>
 </table>

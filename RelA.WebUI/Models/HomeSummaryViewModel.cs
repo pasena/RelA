@@ -8,6 +8,7 @@ namespace RelA.WebUI.Models
 {
     public class HomeSummaryViewModel
     {
+        public int TaskID { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string Status { get; set; }

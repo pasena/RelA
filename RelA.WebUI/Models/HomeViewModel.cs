@@ -12,9 +12,5 @@ namespace RelA.WebUI.Models
         public IList<HomeSummaryViewModel> Concluded { get; set; }
         public IList<HomeSummaryViewModel> Developing { get; set; }
         public IList<HomeSummaryViewModel> Others { get; set; }
-
-        public Color Color { get; set; }
-        public Color TextColor { get; set; }
-
     }
 }

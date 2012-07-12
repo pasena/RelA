@@ -116,6 +116,10 @@
     <Compile Include="Migrations\201207082121268_TaskRemoveConclusionDate.Designer.cs">
       <DependentUpon>201207082121268_TaskRemoveConclusionDate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201207112238327_TaskStatusColorRequired.cs" />
+    <Compile Include="Migrations\201207112238327_TaskStatusColorRequired.Designer.cs">
+      <DependentUpon>201207112238327_TaskStatusColorRequired.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
